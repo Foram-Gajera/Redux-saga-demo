@@ -16,12 +16,12 @@ const Users = () => {
 
   return (
     <div>
-      {users.loading && <p>Loading......</p>}
+      {loading && <p>Loading......</p>}
+
       {users.length > 0 &&
-        users.map((user) => <Card user={user} key={user.id} />)}
+        users.map((user) => <Card key={user.id} user={user} />)}
 
       {users.length === 0 && <p>No users avaliable!</p>}
-      {users}
       {error && !loading && <p>{error}</p>}
     </div>
   );

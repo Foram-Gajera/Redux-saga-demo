@@ -5,12 +5,15 @@ const apiUrl = "https://jsonplaceholder.typicode.com/users";
 
 function getApi() {
   return axios.get(apiUrl).then((res) => res.data);
-  // return fetch(apiUrl, {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // })
+  // return fetch(
+  //   apiUrl
+  //   // {
+  //   //   method: "GET",
+  //   //   headers: {
+  //   //     "Content-Type": "application/json",
+  //   //   },
+  //   // }
+  // )
   //   .then((res) => {
   //     debugger;
   //     // console.log("daaaaaaaaaa" + res.json());
@@ -24,11 +27,11 @@ function getApi() {
 
 function* fetchUsers(action) {
   try {
-    debugger;
+    // debugger;
     const users = yield call(getApi);
     yield put({ type: "GET_USERS_SUCCESS", users: users });
   } catch (e) {
-    debugger;
+    // debugger;
     yield put({ type: "GET_USERS_FAILED", message: e.message });
   }
 }
