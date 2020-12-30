@@ -6,3 +6,19 @@ export function getUsers() {
     // payload: users,
   };
 }
+
+export function deleteUsers(id) {
+  return {
+    type: actionTypes.DELETE_USERS_REQUESTED,
+    payload: id,
+    // payload: users,
+  };
+}
+
+export function addUser(user) {
+  return {
+    type: actionTypes.ADD_USERS_REQUESTED,
+    payload: user,
+    // payload: users,
+  };
+}

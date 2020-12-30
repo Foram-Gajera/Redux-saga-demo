@@ -27,6 +27,45 @@ const users = (state = initialState, action) => {
         error: action.message,
       };
 
+    case actionTypes.DELETE_USERS_REQUESTED:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case actionTypes.DELETE_USERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        users: state.users.filter((user) => user.id !== action.payload),
+      };
+
+    case actionTypes.DELETE_USERS_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.message,
+      };
+
+    case actionTypes.ADD_USERS_REQUESTED:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case actionTypes.ADD_USERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        users: [...state.users, action.user],
+      };
+    case actionTypes.ADD_USERS_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.message,
+      };
+
     default:
       return state;
   }
