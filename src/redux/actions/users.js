@@ -22,3 +22,10 @@ export function addUser(user) {
     // payload: users,
   };
 }
+
+export function updateUser(user) {
+  return {
+    type: actionTypes.UPDATE_USERS_REQUESTED,
+    payload: user,
+  };
+}

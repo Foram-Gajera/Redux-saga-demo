@@ -3,7 +3,7 @@ import axios from "axios";
 
 // const apiUrl = "https://jsonplaceholder.typicode.com/users/";
 
-const apiUrl = "https://user-saga-default-rtdb.firebaseio.com/";
+export const apiUrl = "https://user-saga-default-rtdb.firebaseio.com/";
 function getApi() {
   return axios.get(apiUrl + "users.json").then((res) => {
     // debugger;
@@ -81,7 +81,6 @@ function* fetchUsers(action) {
 
 function* addUser(action) {
   const user = action.payload;
-  debugger;
   try {
     console.log("add user");
     yield axios
@@ -95,6 +94,21 @@ function* addUser(action) {
   }
 }
 
+function* updateUser(action) {
+  const user = action.payload;
+  try {
+    console.log("update user");
+    yield axios
+      .put(apiUrl + `users/${user.id}.json`, user)
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+    yield put({ type: "UPDATE_USERS_SUCCESS", user: user });
+  } catch (e) {
+    console.log("update user fail");
+    yield put({ type: "UPDATE_USERS_FAILED", message: e.message });
+  }
+}
+
 export function* userSaga() {
   yield takeEvery("GET_USERS_REQUESTED", fetchUsers);
 }
@@ -105,4 +119,8 @@ export function* deleteSaga() {
 
 export function* addSaga() {
   yield takeLatest("ADD_USERS_REQUESTED", addUser);
+}
+
+export function* updateSaga() {
+  yield takeLatest("UPDATE_USERS_REQUESTED", updateUser);
 }

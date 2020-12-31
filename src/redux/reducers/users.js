@@ -66,6 +66,29 @@ const users = (state = initialState, action) => {
         error: action.message,
       };
 
+    case actionTypes.UPDATE_USERS_REQUESTED:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case actionTypes.UPDATE_USERS_SUCCESS:
+      console.log("end", action.user);
+      return {
+        ...state,
+        loading: false,
+        users: [
+          (state.users[action.user.id] = action.user),
+          ...state.users.filter((user) => user.id !== action.user.id),
+        ],
+      };
+    case actionTypes.UPDATE_USERS_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.message,
+      };
+
     default:
       return state;
   }

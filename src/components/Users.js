@@ -19,16 +19,23 @@ const Users = () => {
   }, []);
 
   const history = useHistory();
-  const AddUser = () => {
-    history.push("/add");
+  const HandleAddUser = () => {
+    history.push("/user");
   };
 
   return (
     <div>
-      <div style={{ marginLeft: "10px" }}>
+      <div
+        style={{
+          marginLeft: "20%",
+          width: "60%",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <div className="h3">Users List</div>
         <div>
-          <button className="btn btn-primary" onClick={AddUser}>
+          <button className="btn btn-primary" onClick={HandleAddUser}>
             Add User
           </button>
         </div>
